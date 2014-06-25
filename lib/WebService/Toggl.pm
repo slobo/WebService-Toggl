@@ -10,7 +10,17 @@ our $VERSION = "0.01";
 has 'me' => (is =>'ro', lazy => 1, builder => 1);
 sub _build_me {
     my ($self) = @_;
+    require WebService::Toggl::API::Me;
     return WebService::Toggl::API::Me->new({api_key => $self->api_key});
+}
+
+
+sub workspace {
+    my ($self, $id) = @_;
+    require WebService::Toggl::API::Workspace;
+    return WebService::Toggl::API::Workspace->new({
+        api_key => $self->api_key, id => $id
+    });
 }
 
 
