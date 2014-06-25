@@ -1,38 +1,30 @@
 package WebService::Toggl::API::Workspace;
 
-use Types::Standard qw(Bool Int Str);
-use Sub::Quote qw(quote_sub);
+use WebService::Toggl::Role::Item as => 'JsonItem';
 
 use Moo;
 with 'WebService::Toggl::API';
-with 'WebService::Toggl::Role::Item';
 use namespace::clean;
+
+with JsonItem(
+    bools => [ qw(
+        admin only_admins_may_create_projects
+        only_admins_see_billable_rates
+        only_admins_see_team_dashboard
+        premium projects_billable_by_default
+    ) ],
+
+    strings => [ qw(
+        api_token at default_currency ical_url logo_url name
+    ) ],
+
+    integers => [ qw(id rounding rounding_minutes) ],
+);
+
 
 sub api_path { 'workspaces' }
 sub api_id   { shift->id }
 
-
-sub bools { [ qw(
-    admin only_admins_may_create_projects
-    only_admins_see_billable_rates
-    only_admins_see_team_dashboard
-    premium projects_billable_by_default
-) ] }
-
-sub strings { [ qw(
-    api_token at default_currency ical_url logo_url name
-) ] }
-
-sub integers { [ qw(
-    id rounding rounding_minutes
-) ] }
-
-has $_ => (is => 'ro', isa => Bool, lazy => 1, builder => quote_sub(qq| \$_[0]->raw->{$_} |))
-    for (@{ bools() });
-has $_ => (is => 'ro', isa => Str,  lazy => 1, builder => quote_sub(qq| \$_[0]->raw->{$_} |))
-    for (@{ strings() });
-has $_ => (is => 'ro', isa => Int,  lazy => 1, builder => quote_sub(qq| \$_[0]->raw->{$_} |))
-    for (@{ integers() });
 
 
 1;
