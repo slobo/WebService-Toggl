@@ -1,6 +1,6 @@
 package WebService::Toggl::Report::Summary;
 
-use Types::Standard qw(Bool Int Str);
+use Types::Standard qw(Bool);
 
 use Moo;
 with 'WebService::Toggl::Report';
