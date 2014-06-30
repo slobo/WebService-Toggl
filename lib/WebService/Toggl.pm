@@ -24,6 +24,16 @@ sub workspace {
 }
 
 
+sub details {
+    my ($self, $args) = @_;
+    require WebService::Toggl::Report::Details;
+    return WebService::Toggl::Report::Details->new({
+        api_key => $self->api_key, %$args
+    });
+
+
+}
+
 1;
 __END__
 

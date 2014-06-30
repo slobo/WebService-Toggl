@@ -16,7 +16,7 @@ sub make_variant {
     has raw => (is => 'ro', lazy => 1, builder => 1);
     install '_build_raw' => sub {
         my ($self) = @_;
-        my $response = $self->ua->get( $self->_build_url($self->api_path, $self->api_id) );
+        my $response = $self->ua->get( $self->_build_url([$self->api_path, $self->api_id]) );
         return $self->decode_json( $response->{content} )->{data};
     };
 

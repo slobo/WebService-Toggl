@@ -21,11 +21,16 @@ with JsonItem(
     integers => [ qw(id rounding rounding_minutes) ],
 );
 
-
 sub api_path { 'workspaces' }
 sub api_id   { shift->id }
 
-
+sub summary_report {
+    my $self = shift;
+    require WebService::Toggl::Report::Summary;
+    WebService::Toggl::Report::Summary->new({
+        api_key => $self->api_key, workspace_id => $self->id, %{ $_[0] },
+    });
+}
 
 1;
 __END__
