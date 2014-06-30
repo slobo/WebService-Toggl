@@ -3,7 +3,7 @@ package WebService::Toggl::Role::Entity;
 use Data::Printer;
 
 use Moo::Role;
-with 'WebService::Toggl::Role::Base', 'WebService::Toggl::Role::JsonEncoder';
+with 'WebService::Toggl::Role::Base', 'WebApp::Helpers::JsonEncoder';
 
 requires 'base_url';
 # requires 'id';

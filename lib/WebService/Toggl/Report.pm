@@ -5,7 +5,7 @@ use DateTime;
 use Sub::Quote qw(quote_sub);
 
 use Moo::Role;
-with 'WebService::Toggl::Role::Base', 'WebService::Toggl::Role::JsonEncoder';
+with 'WebService::Toggl::Role::Base', 'WebApp::Helpers::JsonEncoder';
 
 sub base_url { 'https://toggl.com/reports/api/v2' }
 

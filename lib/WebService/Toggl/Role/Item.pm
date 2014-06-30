@@ -11,7 +11,7 @@ use Types::Standard qw(Bool Int Str);
 sub make_variant {
     my ($class, $target_pkg, %arguments) = @_;
 
-    with 'WebService::Toggl::Role::Base', 'WebService::Toggl::Role::JsonEncoder';
+    with 'WebService::Toggl::Role::Base', 'WebApp::Helpers::JsonEncoder';
 
     has raw => (is => 'ro', lazy => 1, builder => 1);
     install '_build_raw' => sub {
