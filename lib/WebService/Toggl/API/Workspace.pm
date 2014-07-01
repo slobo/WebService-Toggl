@@ -32,6 +32,27 @@ sub summary_report {
     });
 }
 
+sub workspace_users {
+    my ($self) = @_;
+    require 'WebService::Toggl::API::WorkspaceUsers';
+    return WebService::Toggl::API::WorkspaceUsers->new({
+        api_key => $self->api_key, workspace_id => $self->id,
+    });
+}
+
+
+sub invite {
+    my ($self, $emails) = @_;
+
+    my $resp = $self->post('invite', $emails);
+    my $notifications = $resp->notifications;
+    return WebService::Toggle::API::WorkspaceUsers->new({
+        api_key => $self->api_key, raw => $resp->{data}
+    });
+}
+
+
+
 1;
 __END__
 {
