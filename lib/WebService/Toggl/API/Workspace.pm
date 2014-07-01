@@ -43,8 +43,7 @@ sub workspace_users {
 
 sub invite {
     my ($self, $emails) = @_;
-
-    my $resp = $self->post('invite', $emails);
+    my $resp = $self->api_post($self->my_url . '/invite', $emails);
     my $notifications = $resp->notifications;
     return WebService::Toggle::API::WorkspaceUsers->new({
         api_key => $self->api_key, raw => $resp->{data}

@@ -13,11 +13,17 @@ sub make_variant {
 
     with 'WebService::Toggl::Role::Base', 'WebApp::Helpers::JsonEncoder';
 
+    install 'my_url' => sub {
+        my $url = $_[0]->base_url . '/' . $_[0]->api_path . '/' . $_[0]->api_id;
+        $url =~ s{/$}{};
+        return $url;
+    };
+
     has raw => (is => 'ro', lazy => 1, builder => 1);
     install '_build_raw' => sub {
         my ($self) = @_;
-        my $response = $self->ua->get( $self->_build_url([$self->api_path, $self->api_id]) );
-        return $self->decode_json( $response->{content} )->{data};
+        my $response = $self->api_get( $self->my_url );
+        return $response->data->{data};
     };
 
     has $_ => (is => 'ro', isa => Bool, lazy => 1, builder => quote_sub(qq| \$_[0]->raw->{$_} |))

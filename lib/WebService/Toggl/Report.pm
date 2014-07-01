@@ -7,30 +7,26 @@ use Sub::Quote qw(quote_sub);
 use Moo::Role;
 with 'WebService::Toggl::Role::Base', 'WebApp::Helpers::JsonEncoder';
 
-sub base_url { 'https://toggl.com/reports/api/v2' }
+sub base_url { '/reports/api/v2' }
+
+sub my_url { $_[0]->base_url . '/' . $_[0]->api_path }
 
 requires 'api_path';
 
 has raw => (is => 'ro', lazy => 1, builder => 1);
 sub _build_raw {
     my ($self) = @_;
-    my $url =         $self->_build_url(
-            [$self->api_path], $self->req_params,
-        );
-    p($url);
-    my $response = $self->ua->get(
-        $url
-    );
-    p($response);
-    return $self->decode_json( $response->{content} );
+    my $response = $self->api_get($self->my_url, $self->req_params);
+    return $response->data;
 }
 
-sub _req_params { [qw(workspace_id since until user_agent)] }
+sub _req_params { [qw(workspace_id since until)] }
 sub req_params {
     my ($self) = @_;
     return {
         (map {$_ => $_[0]->$_()} @{ $_[0]->_req_params() }),
         since => $self->since->ymd(), until => $self->until->ymd,
+        user_agent => $self->_request->user_agent_id,
     };
 }
 

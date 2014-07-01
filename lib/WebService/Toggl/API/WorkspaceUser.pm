@@ -15,15 +15,14 @@ with JsonItem(
 sub api_path { 'workspace_users' }
 sub api_id   { shift->id }
 
-
 sub set_admin {
     my ($self, $is_admin) = @_;
-    $self->put( $self->my_url, {admin => $is_admin} );
+    $self->api_put( $self->my_url, {admin => $is_admin} );
 }
 sub make_admin   { $_[0]->set_admin(!!1) }
 sub revoke_admin { $_[0]->set_admin(!!0) }
 
-sub delete { $_[0]->delete( $_[0]->my_url ) }
+sub delete { $_[0]->api_delete( $_[0]->my_url ) }
 
 1;
 __END__
