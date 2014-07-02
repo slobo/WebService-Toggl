@@ -6,7 +6,6 @@ use Types::Standard qw(ArrayRef);
 
 use Moo::Role;
 with 'WebService::Toggl::Role::Base',
-     'WebService::Toggl::Role::Clone',
      'WebApp::Helpers::JsonEncoder';
 
 requires 'list_of';
@@ -16,7 +15,7 @@ has raw => (is => 'ro', lazy => 1, builder => 1);
 sub _build_raw {
     my ($self) = @_;
     my $response = $self->api_get( $self->my_url );
-    return $response->data->{data};
+    return $response->data;
 }
 
 
@@ -24,9 +23,7 @@ sub all {
     my ($self) = @_;
     my $new_class = $self->list_of;
     require $new_class;
-    return map { $new_class->new({
-        api_key => $self->api_key, raw => $self->clone($_),
-    }) } @{$self->raw};
+    return map { $self->new_item_from_raw($new_class, $_) } @{$self->raw};
 }
 
 

@@ -26,28 +26,21 @@ sub api_id   { shift->id }
 
 sub summary_report {
     my $self = shift;
-    require WebService::Toggl::Report::Summary;
-    WebService::Toggl::Report::Summary->new({
-        api_key => $self->api_key, workspace_id => $self->id, %{ $_[0] },
-    });
+    return $self->new_report(
+        '::Summary', {workspace_id => $self->id, %{ $_[0] },}
+    );
 }
 
-sub workspace_users {
-    my ($self) = @_;
-    require 'WebService::Toggl::API::WorkspaceUsers';
-    return WebService::Toggl::API::WorkspaceUsers->new({
-        api_key => $self->api_key, workspace_id => $self->id,
-    });
-}
+sub workspace_users { $_[0]->new_set('::WorkspaceUsers', {workspace_id => $_[0]->id}) }
 
 
 sub invite {
     my ($self, $emails) = @_;
     my $resp = $self->api_post($self->my_url . '/invite', $emails);
     my $notifications = $resp->notifications;
-    return WebService::Toggle::API::WorkspaceUsers->new({
-        api_key => $self->api_key, raw => $resp->{data}
-    });
+    return map {
+        $self->new_item_from_raw('::WorkspaceUser', $_)
+    } @{ $resp->data->{data} };
 }
 
 

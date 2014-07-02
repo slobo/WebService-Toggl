@@ -3,6 +3,7 @@ requires 'perl', '5.008001';
 requires 'DateTime';
 requires 'HTTP::Tiny';
 requires 'MIME::Base64';
+requires 'Module::Runtime';
 requires 'Moo';
 requires 'namespace::clean';
 requires 'Package::Variant';

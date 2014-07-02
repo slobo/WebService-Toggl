@@ -4,7 +4,6 @@ use WebService::Toggl::Role::Item as => 'JsonItem';
 
 use Moo;
 with 'WebService::Toggl::API';
-with 'WebService::Toggl::Role::Clone';
 use namespace::clean;
 
 with JsonItem(
@@ -34,11 +33,8 @@ sub api_id   { '' }
 
 sub workspaces {
     my ($self) = @_;
-    require WebService::Toggl::API::Workspace;
-    return map {WebService::Toggl::API::Workspace->new({
-        api_key => $self->api_key,
-        raw     => $self->clone($_),
-    })} @{ $self->raw->{workspaces} };
+    return map { $self->new_item_from_raw('::Workspace', $_) }
+        @{ $self->raw->{workspaces} };
 }
 
 
