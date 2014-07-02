@@ -78,18 +78,6 @@ sub workspace_users {
 }
 
 
-
-sub invite {
-    my ($self, $emails) = @_;
-    my $resp = $self->api_post($self->my_url . '/invite', $emails);
-    my $notifications = $resp->notifications;
-    return map {
-        $self->new_item_from_raw('::WorkspaceUser', $_)
-    } @{ $resp->data->{data} };
-}
-
-
-
 1;
 __END__
 {

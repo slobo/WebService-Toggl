@@ -23,14 +23,6 @@ sub api_path { 'time_entries' }
 sub api_id   { shift->id }
 
 
-sub stop {
-    my ($self) = @_;
-    my $response = $self->api_put($self->my_url . '/stop', {});
-    return $self-new_item_from_raw('::TimeEntry', $response->data->{data});
-}
-
-
-
 
 1;
 __END__

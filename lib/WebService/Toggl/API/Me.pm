@@ -7,8 +7,6 @@ use namespace::clean;
 sub api_path { 'me' }
 sub api_id   { '' }
 
-# should this be here?
-sub reset_token { $_[0]->api_post($_[0]->base_url . '/reset_token', {})->data }
 
 1;
 __END__

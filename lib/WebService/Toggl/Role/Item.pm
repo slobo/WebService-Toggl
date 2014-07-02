@@ -32,18 +32,6 @@ sub make_variant {
         for (@{ $arguments{strings} } );
     has $_ => (is => 'ro', isa => Int,  lazy => 1, builder => quote_sub(qq| \$_[0]->raw->{$_} |))
         for (@{ $arguments{integers} });
-
-    install 'update' => sub {
-        my ($self) = @_;
-        my $response = $self->api_put($self->my_url, $self->raw);
-        $self->raw->{at} = $response->data->{data}{at};
-    };
-
-    install 'delete' => sub {
-        my ($self) = @_;
-        $self->api_delete($self->my_url);
-    };
-
 }
 
 

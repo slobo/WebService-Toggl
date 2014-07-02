@@ -26,11 +26,5 @@ sub all {
 }
 
 
-sub create {
-    my ($self, $data) = @_;
-    my $response = $self->api_post( $self->my_url, $data );
-    return $self->new_item_from_raw( $self->list_of, $response->data->{data} );
-}
-
 1;
 __END__
