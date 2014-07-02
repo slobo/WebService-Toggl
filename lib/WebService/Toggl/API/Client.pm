@@ -21,9 +21,8 @@ sub projects {
     my ($self, $args) = @_;
     $args ||= {};
     # todo: validate $args->{active} is [true,false,both]
-    my $response = $self->api_get($self->my_url . '/projects', $args);
-    return map { $self->new_item_from_raw('::Project', $_) }
-        @{ $response->data };
+    my $res = $self->api_get($self->my_url . '/projects', $args);
+    return $self->new_set_from_raw('::Projects', $res->data);
 }
 
 
