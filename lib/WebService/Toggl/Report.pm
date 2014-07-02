@@ -39,7 +39,7 @@ sub _build_until { DateTime->now }
 
 
 # response params
-has $_ => (is => 'ro', lazy => 1, builder => quote_sub(q| $_[0]->raw->{$_} |))
+has $_ => (is => 'ro', lazy => 1, builder => quote_sub(qq| \$_[0]->raw->{$_} |))
     for (qw(total_grand total_billable total_currencies data));
 
 
