@@ -19,6 +19,19 @@ sub api_path { 'projects' }
 sub api_id   { shift->id }
 
 
+sub project_users {
+    my ($self) = @_;
+    my $res = $self->api_get($self->my_url . '/project_users');
+    return $self->new_set_from_raw('::ProjectUsers', $res->data);
+}
+
+sub tasks {
+    my ($self) = @_;
+    my $res = $self->api_get($self->my_url . '/tasks');
+    return $self->new_set_from_raw('::Tasks', $res->data);
+}
+
+
 1;
 __END__
 
