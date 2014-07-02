@@ -15,8 +15,8 @@ around _req_params => sub {
 };
 
 # request params
-has grouping    => (is => 'ro');
-has subgrouping => (is => 'ro');
+has grouping    => (is => 'ro', default => 'projects',);
+has subgrouping => (is => 'ro', default => 'tasks',);
 has subgrouping_ids => (is => 'ro', isa => Bool, default => 0,);
 has grouped_time_entry_ids => (is => 'ro', isa => Bool, default => 0,);
 
