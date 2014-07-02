@@ -19,6 +19,14 @@ main: {
     say "My Workspaces:";
     for my $ws ($me->workspaces->all) {
         say "  " . $ws->name . " (" . $ws->id . ")";
+        say "  Users:";
+        say "    " . $_->fullname . " <" . $_->email . "> " for ($ws->users->all);
+        say "  Clients:";
+        say "    " . $_->name . " (" . $_->id . ") " for ($ws->clients->all);
+        say "  Projects:";
+        say "    " . $_->name . " (" . $_->id . ") " for ($ws->projects->all);
+        say "  Tags:";
+        say "    " . $_->name . " (" . $_->id . ") " for ($ws->tags->all);
     }
 
     say "My Projects:";
