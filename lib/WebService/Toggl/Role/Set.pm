@@ -22,10 +22,15 @@ sub _build_raw {
 sub all {
     my ($self) = @_;
     my $new_class = $self->list_of;
-    require $new_class;
     return map { $self->new_item_from_raw($new_class, $_) } @{$self->raw};
 }
 
+
+sub create {
+    my ($self, $data) = @_;
+    my $response = $self->api_post( $self->my_url, $data );
+    return $self->new_item_from_raw( $self->list_of, $response->data->{data} );
+}
 
 1;
 __END__

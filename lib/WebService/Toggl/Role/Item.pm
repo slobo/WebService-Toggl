@@ -35,7 +35,8 @@ sub make_variant {
 
     install 'update' => sub {
         my ($self) = @_;
-        $self->api_put($self->my_url, $self->raw);
+        my $response = $self->api_put($self->my_url, $self->raw);
+        $self->raw->{at} = $response->data->{data}{at};
     };
 
     install 'delete' => sub {

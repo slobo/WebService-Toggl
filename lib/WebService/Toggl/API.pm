@@ -26,6 +26,8 @@ sub new_report {
 
 sub new_set { shift->new_item(@_) }
 
+sub new_set_from_raw { shift->new_item_from_raw(@_) }
+
 
 
 

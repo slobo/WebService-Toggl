@@ -18,8 +18,10 @@ sub api_id   { shift->id }
 
 
 sub projects {
-    my ($self) = @_;
-    my $response = $self->api_get($self->my_url . '/projects');
+    my ($self, $args) = @_;
+    $args ||= {};
+    # todo: validate $args->{active} is [true,false,both]
+    my $response = $self->api_get($self->my_url . '/projects', $args);
     return map { $self->new_item_from_raw('::Project', $_) }
         @{ $response->data };
 }
@@ -35,3 +37,12 @@ __END__
    "notes":"something about the client",
    "at":"2013-02-26T08:55:28+00:00"
 }
+
+Not Yet:
+hrate: The hourly rate for this client (float, not required, available only for pro workspaces)
+cur: The name of the client's currency (string, not required, available only for pro workspaces)
+
+
+projects():
+   active: possible values true/false/both. By default true. If false,
+           only archived projects are returned.

@@ -33,6 +33,23 @@ sub summary_report {
 
 sub workspace_users { $_[0]->new_set('::WorkspaceUsers', {workspace_id => $_[0]->id}) }
 
+sub clients {
+    my ($self) = @_;
+    my $response = $self->api_get($self->my_url . '/clients');
+    return $self->new_set_from_raw('::Clients', $response->data);
+}
+
+# requires: admin
+# params:
+#   active: possible values true/false/both
+#   actual_hours: true|false
+#   only_templates: true|false
+sub projects {
+    my ($self) = @_;
+    my $response = $self->api_get($self->my_url . '/projects');
+    return $self->new_set_from_raw('::Projects', $response->data);
+}
+
 
 sub invite {
     my ($self, $emails) = @_;
