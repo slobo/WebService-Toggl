@@ -15,10 +15,12 @@ with JsonItem(
     ) ],
 
     strings => [ qw(
-        api_token at default_currency ical_url logo_url name
+        api_token default_currency ical_url logo_url name
     ) ],
 
     integers => [ qw(id rounding rounding_minutes) ],
+    floats   => [ qw(default_hourly_rate) ],
+    timestamps => [ qw(at) ],
 );
 
 sub api_path { 'workspaces' }
@@ -31,7 +33,11 @@ sub summary_report {
     );
 }
 
-sub workspace_users { $_[0]->new_set('::WorkspaceUsers', {workspace_id => $_[0]->id}) }
+sub users {
+    my ($self) = @_;
+    my $res = $self->api_get($self->my_url . '/users');
+    $self->new_set_from_raw('::Users', $res->data);
+}
 
 sub clients {
     my ($self) = @_;
@@ -49,6 +55,28 @@ sub projects {
     my $response = $self->api_get($self->my_url . '/projects');
     return $self->new_set_from_raw('::Projects', $response->data);
 }
+
+# requires: admin
+# params:
+#   active: possible values true/false/both
+sub tasks {
+    my ($self) = @_;
+    my $response = $self->api_get($self->my_url . '/tasks');
+    return $self->new_set_from_raw('::Tasks', $response->data);
+}
+
+sub tags {
+    my ($self) = @_;
+    my $response = $self->api_get($self->my_url . '/tags');
+    return $self->new_set_from_raw('::Tags', $response->data);
+}
+
+sub workspace_users {
+    my ($self) = @_;
+    my $res = $self->api_get($self->my_url . '/workspace_users');
+    $self->new_set_from_raw('::WorkspaceUsers', $res->data);
+}
+
 
 
 sub invite {

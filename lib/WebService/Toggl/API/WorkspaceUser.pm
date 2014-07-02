@@ -17,7 +17,7 @@ sub api_id   { shift->id }
 
 sub set_admin {
     my ($self, $is_admin) = @_;
-    $self->api_put( $self->my_url, {admin => $is_admin} );
+    $self->api_put( $self->my_url, {"workspace_user" => {admin => $is_admin}} );
 }
 sub make_admin   { $_[0]->set_admin(!!1) }
 sub revoke_admin { $_[0]->set_admin(!!0) }

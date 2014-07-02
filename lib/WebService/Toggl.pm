@@ -1,5 +1,7 @@
 package WebService::Toggl;
 
+use Module::Runtime qw(use_package_optimistically);
+
 use Moo;
 with 'WebService::Toggl::Role::Base';
 use namespace::clean;
@@ -9,29 +11,21 @@ our $VERSION = "0.01";
 
 has 'me' => (is =>'ro', lazy => 1, builder => 1);
 sub _build_me {
-    my ($self) = @_;
-    require WebService::Toggl::API::Me;
-    return WebService::Toggl::API::Me->new({api_key => $self->api_key});
+    use_package_optimistically('WebService::Toggl::API::Me')
+        ->new({api_key => shift->api_key})
 }
 
 
 sub workspace {
-    my ($self, $id) = @_;
-    require WebService::Toggl::API::Workspace;
-    return WebService::Toggl::API::Workspace->new({
-        api_key => $self->api_key, id => $id
-    });
+    use_package_optimistically('WebService::Toggl::API::Workspace')
+        ->new({api_key => shift->api_key, id => shift})
 }
 
 
 sub details {
     my ($self, $args) = @_;
-    require WebService::Toggl::Report::Details;
-    return WebService::Toggl::Report::Details->new({
-        api_key => $self->api_key, %$args
-    });
-
-
+    use_package_optimistically('WebService::Toggl::Report::Details')
+        ->new({api_key => shift->api_key, %{ shift() }})
 }
 
 1;

@@ -1,5 +1,7 @@
 package WebService::Toggl::API::Me;
 
+use Data::Printer;
+use Sub::Quote qw(quote_sub);
 use WebService::Toggl::Role::Item as => 'JsonItem';
 
 use Moo;
@@ -26,19 +28,23 @@ with JsonItem(
     integers => [ qw(default_wid retention beginning_of_week id) ]
 );
 
+has $_ => (is => 'ro', lazy => 1, builder => quote_sub(qq| \$_[0]->raw->{$_} |))
+    for (qw(new_blog_post invitation achievements));
+
 
 sub api_path { 'me' }
 sub api_id   { '' }
 
 
-sub workspaces {
-    my ($self) = @_;
-    return map { $self->new_item_from_raw('::Workspace', $_) }
-        @{ $self->raw->{workspaces} };
-}
+sub time_entries { $_[0]->new_set_from_raw('::TimeEntries', $_[0]->raw->{time_entries}) }
+sub projects     { $_[0]->new_set_from_raw('::Projects',    $_[0]->raw->{projects})     }
+sub tags         { $_[0]->new_set_from_raw('::Tags',        $_[0]->raw->{tags})         }
+sub workspaces   { $_[0]->new_set_from_raw('::Workspaces',  $_[0]->raw->{workspaces})   }
+sub clients      { $_[0]->new_set_from_raw('::Clients',     $_[0]->raw->{clients})      }
 
 
-
+# should this be here?
+sub reset_token { $_[0]->api_post($_[0]->base_url . '/reset_token', {})->data }
 
 1;
 __END__

@@ -22,7 +22,7 @@ sub make_variant {
     has raw => (is => 'ro', lazy => 1, builder => 1);
     install '_build_raw' => sub {
         my ($self) = @_;
-        my $response = $self->api_get( $self->my_url );
+        my $response = $self->api_get( $self->my_url, {with_related_data => 1} );
         return $response->data->{data};
     };
 

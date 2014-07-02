@@ -15,7 +15,7 @@ sub new_item {
 
 sub new_item_from_raw {
     my ($self, $class, $raw) = @_;
-    $self->new_item($class, {raw => $self->clone($_)});
+    $self->new_item($class, {raw => $self->clone($raw)});
 }
 
 sub new_report {

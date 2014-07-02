@@ -4,7 +4,7 @@ use Moo;
 with 'WebService::Toggl::API', 'WebService::Toggl::Role::Set';
 use namespace::clean;
 
-sub list_of { 'WebService::Toggl::API::Project' }
+sub list_of { '::Project' }
 
 sub my_url { '/projects' }
 
