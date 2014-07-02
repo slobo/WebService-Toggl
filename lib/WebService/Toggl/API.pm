@@ -1,9 +1,9 @@
 package WebService::Toggl::API;
 
 use Module::Runtime qw(use_package_optimistically);
+use Storable qw(dclone);
 
 use Moo::Role;
-with 'WebService::Toggl::Role::Clone';
 
 has base_url => (is => 'ro', default => '/api/v8');
 
@@ -15,7 +15,7 @@ sub new_item {
 
 sub new_item_from_raw {
     my ($self, $class, $raw) = @_;
-    $self->new_item($class, {raw => $self->clone($raw)});
+    $self->new_item($class, {raw => dclone($raw)});
 }
 
 sub new_report {
