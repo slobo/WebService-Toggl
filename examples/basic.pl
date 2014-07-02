@@ -19,19 +19,23 @@ main: {
     say "My Workspaces:";
     for my $ws ($me->workspaces->all) {
         say "  " . $ws->name . " (" . $ws->id . ")";
-        say "  Users:";
-        say "    " . $_->fullname . " <" . $_->email . "> " for ($ws->users->all);
-        say "  Clients:";
-        say "    " . $_->name . " (" . $_->id . ") " for ($ws->clients->all);
-        say "  Projects:";
-        say "    " . $_->name . " (" . $_->id . ") " for ($ws->projects->all);
-        say "  Tags:";
-        say "    " . $_->name . " (" . $_->id . ") " for ($ws->tags->all);
+        say "    Users:";
+        say "      " . $_->fullname . " <" . $_->email . "> " for ($ws->users->all);
+        say "    Clients:";
+        say "      " . $_->name . " (" . $_->id . ") " for ($ws->clients->all);
+        say "    Projects:";
+        say "      " . $_->name . " (" . $_->id . ") " for ($ws->projects->all);
+        say "    Tags:";
+        say "      " . $_->name . " (" . $_->id . ") " for ($ws->tags->all);
     }
 
     say "My Projects:";
     for my $project ($me->projects->all) {
         say "  " . $project->name . " (" . $project->id . ")";
+        say "    ProjectUsers:";
+        say "      Uid: " . $_->uid . " (" . $_->id . ") " for ($project->project_users->all);
+        say "    Tasks:";
+        say "    " . $_->name . " (" . $_->id . ") " for ($project->tasks->all);
     }
 
     say "My Time Entries:";
@@ -47,6 +51,9 @@ main: {
     say "My Clients:";
     for my $client ($me->clients->all) {
         say "  " . $client->name . " (" . $client->id . ")";
+        say "    Projects:";
+        say "      " . $_->name . " (" . $_->id . ") " for ($client->projects->all);
+
     }
 
 
