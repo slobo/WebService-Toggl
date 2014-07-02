@@ -38,9 +38,9 @@ sub api_id   { '' }
 
 sub time_entries { $_[0]->new_set_from_raw('::TimeEntries', $_[0]->raw->{time_entries}) }
 sub projects     { $_[0]->new_set_from_raw('::Projects',    $_[0]->raw->{projects})     }
-sub tags         { $_[0]->new_set_from_raw('::Tags',        $_[0]->raw->{tags})         }
+sub tags         { $_[0]->new_set_from_raw('::Tags',        ($_[0]->raw->{tags} || [])) }
 sub workspaces   { $_[0]->new_set_from_raw('::Workspaces',  $_[0]->raw->{workspaces})   }
-sub clients      { $_[0]->new_set_from_raw('::Clients',     $_[0]->raw->{clients})      }
+sub clients      { $_[0]->new_set_from_raw('::Clients',     $_[0]->raw->{clients} || [])      }
 
 
 # should this be here?

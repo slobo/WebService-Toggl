@@ -7,9 +7,9 @@ with 'WebService::Toggl::API';
 use namespace::clean;
 
 with JsonItem(
-    bools    => [ qw()     ],
-    strings  => [ qw(name) ],
-    integers => [ qw(wid)  ],
+    bools    => [ qw()       ],
+    strings  => [ qw(name)   ],
+    integers => [ qw(id wid) ],
 );
 
 

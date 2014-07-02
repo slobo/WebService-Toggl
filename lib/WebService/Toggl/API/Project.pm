@@ -7,9 +7,9 @@ with 'WebService::Toggl::API';
 use namespace::clean;
 
 with JsonItem(
-    bools      => [ qw(active is_private template billable auto_estimates) ]
+    bools      => [ qw(active is_private template billable auto_estimates) ],
     strings    => [ qw(name) ],
-    integers   => [ qw(wid cid template_id color estimated_hours) ],
+    integers   => [ qw(id wid cid template_id color estimated_hours) ],
     timestamps => [ qw(at created_at) ],
     floats     => [ qw(rate) ],
 );

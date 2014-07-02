@@ -12,14 +12,14 @@ sub my_url { '/time_entries' }
 sub start {
     my ($self, $data) = @_;
     my $response = $self->api_post($self->my_url . "/start", $data);
-    return $self->new_item_from_raw( $self->list_of, $respose->data->{data} );
+    return $self->new_item_from_raw( $self->list_of, $response->data->{data} );
 }
 
 
 sub current {
     my ($self) = @_;
     my $response = $self->api_get($self->my_url . "/current");
-    return $self->new_item_from_raw( $self->list_of, $respose->data->{data} );
+    return $self->new_item_from_raw( $self->list_of, $response->data->{data} );
 }
 
 1;
