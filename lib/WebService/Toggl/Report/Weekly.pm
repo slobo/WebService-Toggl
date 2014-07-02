@@ -1,5 +1,7 @@
 package WebService::Toggl::Report::Weekly;
 
+use Sub::Quote qw(quote_sub);
+
 use Moo;
 with 'WebService::Toggl::Report';
 use namespace::clean;
@@ -20,7 +22,7 @@ has calculate => (is => 'ro'); # time, earnings
 # repsonse params
 #  **none**
 
-has week_totals => (is => 'ro', lazy => 1, builder => quote_sub(q| $_[0]->raw->{$_} |)));
+has week_totals => (is => 'ro', lazy => 1, builder => quote_sub(qq| \$_[0]->raw->{$_} |));
 
 1;
 __END__
