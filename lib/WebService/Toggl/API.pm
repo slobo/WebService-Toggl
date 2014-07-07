@@ -10,7 +10,7 @@ has base_url => (is => 'ro', default => '/api/v8');
 sub new_item {
     my ($self, $class, $args) = @_;
     use_package_optimistically('WebService::Toggl::API' . $class)
-        ->new({api_key => $self->api_key, %$args});
+        ->new({_request => $self->_request, %$args});
 }
 
 sub new_item_from_raw {
@@ -21,7 +21,7 @@ sub new_item_from_raw {
 sub new_report {
     my ($self, $class, $args) = @_;
     use_package_optimistically('WebService::Toggl::Report' . $class)
-        ->new({api_key => $self->api_key, %$args});
+        ->new({_request => $self->_request, %$args});
 }
 
 sub new_set { shift->new_item(@_) }
