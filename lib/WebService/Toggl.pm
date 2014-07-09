@@ -13,15 +13,15 @@ has 'me' => (is =>'ro', lazy => 1, builder => 1);
 sub _build_me { shift->_new_thing('::API::Me') }
 
 
-sub workspace     { shift->_new_thing_by_id('::API::Workspace',     @_) }
-sub client        { shift->_new_thing_by_id('::API::Client',        @_) }
-sub project       { shift->_new_thing_by_id('::API::Project',       @_) }
-sub project_user  { shift->_new_thing_by_id('::API::ProjectUser',   @_) }
-sub tag           { shift->_new_thing_by_id('::API::Tag',           @_) }
-sub task          { shift->_new_thing_by_id('::API::Task',          @_) }
-sub time_entry    { shift->_new_thing_by_id('::API::TimeEntry',     @_) }
-sub user          { shift->_new_thing_by_id('::API::User',          @_) }
-sub WorkspaceUser { shift->_new_thing_by_id('::API::WorkspaceUser', @_) }
+sub workspace      { shift->_new_thing_by_id('::API::Workspace',     @_) }
+sub client         { shift->_new_thing_by_id('::API::Client',        @_) }
+sub project        { shift->_new_thing_by_id('::API::Project',       @_) }
+sub project_user   { shift->_new_thing_by_id('::API::ProjectUser',   @_) }
+sub tag            { shift->_new_thing_by_id('::API::Tag',           @_) }
+sub task           { shift->_new_thing_by_id('::API::Task',          @_) }
+sub time_entry     { shift->_new_thing_by_id('::API::TimeEntry',     @_) }
+sub user           { shift->_new_thing_by_id('::API::User',          @_) }
+sub workspace_user { shift->_new_thing_by_id('::API::WorkspaceUser', @_) }
 
 
 sub details { shift->_new_thing('::Report::Details', @_) }
