@@ -20,7 +20,8 @@ sub _build_user_agent {
         agent           => $self->user_agent_id,
         default_headers => {
             'Content-Type'  => 'application/json',
-            'Authorization' => 'Basic ' . encode_base64($self->api_key . ':api_token'),
+            'Accept'        => 'application/json',
+            'Authorization' => 'Basic ' . encode_base64($self->api_key . ':api_token', ''),
         }
     );
 }
@@ -33,8 +34,6 @@ sub _build_url {
     my $req = join('&', map {$_ . '=' . uri_escape($params->{$_})} keys %{$params || {}});
     return $base . '?' . $req;
 }
-
-
 
 
 1;
