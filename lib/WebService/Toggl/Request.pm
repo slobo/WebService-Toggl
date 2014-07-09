@@ -27,14 +27,5 @@ sub _build_user_agent {
 }
 
 
-sub _build_url {
-    my ($self, $path_parts, $params) = @_;
-    my $base = join('/', $self->base_url, @$path_parts);
-    $base =~ s{/$}{};
-    my $req = join('&', map {$_ . '=' . uri_escape($params->{$_})} keys %{$params || {}});
-    return $base . '?' . $req;
-}
-
-
 1;
 __END__
