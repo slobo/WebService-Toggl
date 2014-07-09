@@ -96,6 +96,15 @@ the objects.  These set objects store the raw response query, and will
 return a list of the objects it comprises via the C<< ->all() >>
 method.
 
+=head2 Additional queries
+
+You can make other requests against the Toggle API via the
+C<api_{get,post,put,delete}()> methods provided by
+L<WebService::Toggl::Role::Base>.  For instance, if you had a Tag
+object that you wanted to delete, you could write:
+
+ $tag->api_delete( $tag->my_url );
+
 
 =head1 METHODS
 

@@ -29,3 +29,39 @@ sub _build_user_agent {
 
 1;
 __END__
+
+=encoding utf-8
+
+=head1 NAME
+
+WebService::Toggl::Request - Set headers and make requests to the Toggl API
+
+=head1 DESCRIPTION
+
+This module holds the entity that sends requests to the Toggl API.
+
+=head1 ATTRIBUTES
+
+This module composes L<Role::REST::Client>.  See that module for other
+attributes / methods.
+
+=head2 api_key
+
+The API token that identifies the authorized user.
+
+=head2 user_agent_id
+
+The ID string for the user agent.  Defaults to 'WebService-Toggl '.
+
+=head1 LICENSE
+
+Copyright (C) Fitz Elliott.
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.
+
+=head1 AUTHOR
+
+Fitz Elliott E<lt>felliott@fiskur.orgE<gt>
+
+=cut
