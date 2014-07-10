@@ -7,9 +7,10 @@ use Sub::Quote qw(quote_sub);
 use Moo::Role;
 with 'WebService::Toggl::Role::Base', 'WebApp::Helpers::JsonEncoder';
 
-sub base_url { '/reports/api/v2' }
+has base_url => (is => 'ro', default => '/reports/api/v2');
 
-sub my_url { $_[0]->base_url . '/' . $_[0]->api_path }
+has my_url   => (is => 'ro', lazy => 1, builder => 1);
+sub _build_my_url { $_[0]->base_url . '/' . $_[0]->api_path }
 
 requires 'api_path';
 
@@ -47,25 +48,63 @@ has $_ => (is => 'ro', lazy => 1, builder => quote_sub(qq| \$_[0]->raw->{$_} |))
 1;
 __END__
 
-my @integers = qw(total_grand total_billable);
-my @complex  = qw(total_currencies);
+=encoding utf-8
 
-billable: possible values: yes/no/both, default both
-client_ids: client ids separated by a comma, 0 if you want to filter out time entries without a client
-project_ids: project ids separated by a comma, 0 if you want to filter out time entries without a project
-user_ids: user ids separated by a comma
-tag_ids: tag ids separated by a comma, 0 if you want to filter out time entries without a tag
-task_ids: task ids separated by a comma, 0 if you want to filter out time entries without a task
-time_entry_ids: time entry ids separated by a comma
-description: string, time entry description
-without_description: true/false, filters out the time entries which do not have a description ('(no description)')
-order_field:
+=head1 NAME
 
-    date/description/duration/user in detailed reports
-    title/duration/amount in summary reports
-    title/day1/day2/day3/day4/day5/day6/day7/week_total in weekly report
+WebService::Toggl::Report - Base Role for WebService::Toggl::Report objects
 
-order_desc: on/off, on for descending and off for ascending order
-distinct_rates: on/off, default off
-rounding: on/off, default off, rounds time according to workspace settings
-display_hours: decimal/minutes, display hours with minutes or as a decimal number, default minutes
+=head1 DESCRIPTION
+
+This role provide behavoir common to all C<WebService::Toggl::Report::>
+objects.
+
+=head1 REQUIRES
+
+=head2 api_path
+
+Consuming classes must provide their endpoint on the Reports API.
+Ex. The L<WebService::Toggl::Report::Summary> object's C<api_path> is
+C<summary>.
+
+=head1 ATTRIBUTES
+
+=head2 base_url
+
+The base of the URL for the Toggl Reports API.  Defaults to C</reports/api/v8>.
+
+=head2 my_url
+
+URL for the current Report object.
+
+=head2 raw
+
+The raw data structure returned by querying the API.
+
+=head2 workspace_id
+
+The ID of the workspace for which the report is being generated.
+
+=head2 since / until
+
+L<DateTime> objects representing the bounding period for the report.
+Defaults to C<until> = today, C<since> = today - 6 days
+
+=head1 RESPONSE PARAMETERS
+
+=head2 total_grand / total_billable / total_currencies / data
+
+See the L<https://github.com/toggl/toggl_api_docs/blob/master/reports.md#successful-response|Toggl API Docs>.
+
+=head1 LICENSE
+
+Copyright (C) Fitz Elliott.
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.
+
+=head1 AUTHOR
+
+Fitz Elliott E<lt>felliott@fiskur.orgE<gt>
+
+=cut
