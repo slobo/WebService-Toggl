@@ -115,7 +115,6 @@ different classes, this may change.
 Proxies to C<new_item_from_raw()>.  If API Items and Sets are split into
 different classes, this may change.
 
-
 =head1 LICENSE
 
 Copyright (C) Fitz Elliott.
