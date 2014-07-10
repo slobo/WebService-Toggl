@@ -1,10 +1,10 @@
 {
-   "abstract" : "It's new $module",
+   "abstract" : "Interface to the toggl.com API",
    "author" : [
       "Fitz Elliott <felliott@fiskur.org>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Minilla/v2.1.0, CPAN::Meta::Converter version 2.141520",
+   "generated_by" : "Minilla/v2.1.1, CPAN::Meta::Converter version 2.141520",
    "license" : [
       "perl_5"
    ],
@@ -42,11 +42,23 @@
       },
       "runtime" : {
          "requires" : {
+            "DateTime" : "0",
+            "HTTP::Tiny" : "0",
+            "MIME::Base64" : "0",
+            "Module::Runtime" : "0",
+            "Moo" : "0",
+            "Package::Variant" : "0",
+            "Storable" : "0",
+            "Sub::Quote" : "0",
+            "Types::Standard" : "0",
+            "URI::Escape" : "0",
+            "namespace::clean" : "0",
             "perl" : "5.008001"
          }
       },
       "test" : {
          "requires" : {
+            "Module::Pluggable" : "0",
             "Test::More" : "0.98"
          }
       }

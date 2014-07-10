@@ -28,3 +28,5 @@ cover_db/
 MYMETA.*
 
 /WebService-Toggl-*
+examples/updates.pl
+tmp/
