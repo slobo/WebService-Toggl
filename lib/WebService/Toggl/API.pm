@@ -1,35 +1,40 @@
 package WebService::Toggl::API;
 
-use Module::Runtime qw(use_package_optimistically);
-use Storable qw(dclone);
-
 use Moo::Role;
 
 has base_url => (is => 'ro', default => '/api/v8');
 
-sub new_item {
-    my ($self, $class, $args) = @_;
-    use_package_optimistically('WebService::Toggl::API' . $class)
-        ->new({_request => $self->_request, %$args});
-}
-
-sub new_item_from_raw {
-    my ($self, $class, $raw) = @_;
-    $self->new_item($class, {raw => dclone($raw)});
-}
-
-sub new_report {
-    my ($self, $class, $args) = @_;
-    use_package_optimistically('WebService::Toggl::Report' . $class)
-        ->new({_request => $self->_request, %$args});
-}
-
-sub new_set { shift->new_item(@_) }
-
-sub new_set_from_raw { shift->new_item_from_raw(@_) }
-
-
-
 
 1;
 __END__
+
+=encoding utf-8
+
+=head1 NAME
+
+WebService::Toggl::API - Base Role for WebService::Toggl::API Items and Sets
+
+=head1 DESCRIPTION
+
+This role provide behavoir common to all C<WebService::Toggl::API::>
+objects.
+
+=head1 ATTRIBUTES
+
+=head2 base_url
+
+The base of the URL for the Toggl API.  Defaults to C</api/v8>.
+
+=head1 LICENSE
+
+Copyright (C) Fitz Elliott.
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.
+
+=head1 AUTHOR
+
+Fitz Elliott E<lt>felliott@fiskur.orgE<gt>
+
+=cut
+

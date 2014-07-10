@@ -1,6 +1,8 @@
 package WebService::Toggl::Role::Base;
 
 use Data::Printer;
+use Module::Runtime qw(use_package_optimistically);
+use Storable qw(dclone);
 use WebService::Toggl::Request;
 
 use Moo::Role;
@@ -18,6 +20,26 @@ sub api_post   { shift->_request->post(@_)   }
 sub api_put    { shift->_request->put(@_)    }
 sub api_delete { shift->_request->delete(@_) }
 
+sub new_item {
+    my ($self, $class, $args) = @_;
+    use_package_optimistically('WebService::Toggl::API' . $class)
+        ->new({_request => $self->_request, %$args});
+}
+
+sub new_item_from_raw {
+    my ($self, $class, $raw) = @_;
+    $self->new_item($class, {raw => dclone($raw)});
+}
+
+sub new_report {
+    my ($self, $class, $args) = @_;
+    use_package_optimistically('WebService::Toggl::Report' . $class)
+        ->new({_request => $self->_request, %$args});
+}
+
+sub new_set { shift->new_item(@_) }
+
+sub new_set_from_raw { shift->new_item_from_raw(@_) }
 
 
 
@@ -32,7 +54,8 @@ WebService::Toggl::Role::Base - Common behavior for all WebService::Toggl object
 
 =head1 DESCRIPTION
 
-This role provide behavoir common to all C<WebService::Toggl::API::> and C<WebService::Toggl::Report::> objects.
+This role provide behavoir common to all C<WebService::Toggl::API::>
+and C<WebService::Toggl::Report::> objects.
 
 =head1 ATTRIBUTES
 
@@ -63,6 +86,34 @@ a L<WebService::Toggl::Request> object that uses L<Role::REST::Client>.
 
 These are proxy methods to the C<get>, C<post>, C<put>, and C<delete>
 methods available on the C<_request> object via L<Role::REST::Client>.
+
+=head2 new_item($class, \%args)
+
+Creates a new object of type C<WebService::Toggl::API::$class>. The
+new object receives the C<_request> attribute of the calling object,
+and so does not need the C<api_key> attribute to be set.  C<\%args>
+will be passed through to the constructor of the new object.
+
+=head2 new_item_from_raw($class, \%raw)
+
+Similar to C<new_item()> but sets the new object's C<raw> attribute to
+the C<\%raw> argument.  This obviates the need for querying the API to
+get the object.
+
+=head2 new_report($class, $args)
+
+Same as C<new_item()>, but creates an object of type
+C<WebService::Toggl::Report::$class>.
+
+=head2 new_set($class, $args)
+
+Proxies to C<new_item()>.  If API Items and Sets are split into
+different classes, this may change.
+
+=head2 new_set_from_raw($class, $raw)
+
+Proxies to C<new_item_from_raw()>.  If API Items and Sets are split into
+different classes, this may change.
 
 
 =head1 LICENSE
