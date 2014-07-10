@@ -92,7 +92,7 @@ Defaults to C<until> = today, C<since> = today - 6 days
 
 =head2 total_grand / total_billable / total_currencies / data
 
-See the L<https://github.com/toggl/toggl_api_docs/blob/master/reports.md#successful-response|Toggl API Docs>.
+See the L<Toggl API Docs|https://github.com/toggl/toggl_api_docs/blob/master/reports.md#successful-response>.
 
 =head1 LICENSE
 
