@@ -54,7 +54,7 @@ WebService::Toggl::Role::Base - Common behavior for all WebService::Toggl object
 
 =head1 DESCRIPTION
 
-This role provide behavoir common to all C<WebService::Toggl::API::>
+This role provide behavior common to all C<WebService::Toggl::API::>
 and C<WebService::Toggl::Report::> objects.
 
 =head1 ATTRIBUTES
@@ -72,7 +72,6 @@ The base URL for the Toggl API server.  Defaults to 'https://www.toggl.com'.
 
 The object that sets the headers and makes the requests.  Defaults to
 a L<WebService::Toggl::Request> object that uses L<Role::REST::Client>.
-
 
 =head1 METHODS
 
@@ -127,4 +126,3 @@ it under the same terms as Perl itself.
 Fitz Elliott E<lt>felliott@fiskur.orgE<gt>
 
 =cut
-
