@@ -63,6 +63,12 @@ WebService::Toggl - Interface to the toggl.com API
 
 =head1 DESCRIPTION
 
+B<< NB: This is a new module, and the API is still under development.
+While I'm pretty happy with the current interface, expect the
+internals to be heavily refactored before v1.0.  This version
+currently only supports read access to the API, but I plan to add
+write access in the near future. >>
+
 L<WebService::Toggl> is a perl interface to the
 L<http://www.toggl.com|Toggl> API, as described at
 L<https://github.com/toggl/toggl_api_docs>.  When a new
@@ -151,7 +157,6 @@ Returns the L<WebService::Toggl::API::TimeEntry> object with the given id.
 
 Returns the L<WebService::Toggl::API::User> object with the given id.
 
-
 =head2 Reports
 
 =head3 details( $args )
@@ -168,7 +173,6 @@ given arguments.
 
 Returns the L<WebService::Toggl::Report::Weekly> object with the given
 arguments.
-
 
 =head1 LICENSE
 
