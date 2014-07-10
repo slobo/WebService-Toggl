@@ -1,11 +1,10 @@
 package WebService::Toggl::Report;
 
-use Data::Printer;
 use DateTime;
 use Sub::Quote qw(quote_sub);
 
 use Moo::Role;
-with 'WebService::Toggl::Role::Base', 'WebApp::Helpers::JsonEncoder';
+with 'WebService::Toggl::Role::Base';
 
 has base_url => (is => 'ro', default => '/reports/api/v2');
 
@@ -20,7 +19,6 @@ sub _build_raw {
     my $response = $self->api_get($self->my_url, $self->req_params);
     return $response->data;
 }
-
 sub _req_params { [qw(workspace_id since until)] }
 sub req_params {
     my ($self) = @_;

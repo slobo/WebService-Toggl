@@ -1,12 +1,7 @@
 package WebService::Toggl::Role::Set;
 
-use Data::Printer;
-use Sub::Quote qw(quote_sub);
-use Types::Standard qw(ArrayRef);
-
 use Moo::Role;
-with 'WebService::Toggl::Role::Base',
-     'WebApp::Helpers::JsonEncoder';
+with 'WebService::Toggl::Role::Base';
 
 requires 'list_of';
 requires 'my_url';

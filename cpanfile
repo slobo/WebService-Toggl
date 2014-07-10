@@ -11,7 +11,6 @@ requires 'Storable';
 requires 'Sub::Quote';
 requires 'Types::Standard';
 requires 'URI::Escape';
-requires 'WebApp::Helpers::JsonEncoder';
 
 
 on 'test' => sub {

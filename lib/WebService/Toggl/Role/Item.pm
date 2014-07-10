@@ -4,14 +4,13 @@ use Package::Variant
     importing => ['Moo::Role'],
     subs      => [qw(has with)];
 
-use Data::Printer;
 use Sub::Quote qw(quote_sub);
 use Types::Standard qw(Bool Int Str);
 
 sub make_variant {
     my ($class, $target_pkg, %arguments) = @_;
 
-    with 'WebService::Toggl::Role::Base', 'WebApp::Helpers::JsonEncoder';
+    with 'WebService::Toggl::Role::Base';
 
     install 'my_url' => sub {
         my $url = $_[0]->base_url . '/' . $_[0]->api_path . '/' . $_[0]->api_id;
