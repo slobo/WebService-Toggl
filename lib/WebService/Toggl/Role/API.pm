@@ -1,8 +1,14 @@
-package WebService::Toggl::API;
+package WebService::Toggl::Role::API;
 
 use Moo::Role;
 
+requires 'api_path';
+
 has base_url => (is => 'ro', default => '/api/v8');
+
+has my_url   => (is => 'ro', lazy => 1, builder => 1);
+sub _build_my_url { $_[0]->base_url . '/' . $_[0]->api_path }
+
 
 
 1;
@@ -37,4 +43,3 @@ it under the same terms as Perl itself.
 Fitz Elliott E<lt>felliott@fiskur.orgE<gt>
 
 =cut
-

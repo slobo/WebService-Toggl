@@ -4,7 +4,6 @@ use Moo::Role;
 with 'WebService::Toggl::Role::Base';
 
 requires 'list_of';
-requires 'my_url';
 
 has raw => (is => 'ro', lazy => 1, builder => 1);
 sub _build_raw {
