@@ -64,5 +64,16 @@
       }
    },
    "release_status" : "unstable",
-   "version" : "0.02"
+   "resources" : {
+      "bugtracker" : {
+         "web" : "https://github.com/felliott/WebService-Toggl/issues"
+      },
+      "homepage" : "https://github.com/felliott/WebService-Toggl",
+      "repository" : {
+         "type" : "git",
+         "url" : "git://github.com/felliott/WebService-Toggl",
+         "web" : "https://github.com/felliott/WebService-Toggl"
+      }
+   },
+   "version" : "0.03"
 }
