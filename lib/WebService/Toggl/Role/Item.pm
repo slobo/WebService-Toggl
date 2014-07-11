@@ -81,7 +81,7 @@ made, unless the raw data already exists in the object.
 
 The raw data returned from an API request.
 
-=head2 Provided Methods
+=head2 Wrapped Methods
 
 =head3 my_url
 

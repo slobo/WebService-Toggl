@@ -40,10 +40,6 @@ C<WebService::Toggl::API::> objects.
 
 The class name of the objects this set comprises.
 
-=head2 my_url
-
-The URL to the collection.
-
 =head1 ATTRIBUTES
 
 =head2 raw
