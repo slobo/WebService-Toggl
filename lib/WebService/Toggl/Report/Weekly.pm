@@ -31,7 +31,7 @@ has calculate => (
 # repsonse params
 #  **none**
 
-has week_totals => (is => 'ro', lazy => 1, builder => quote_sub(qq| \$_[0]->raw->{$_} |));
+has week_totals => (is => 'ro', lazy => 1, builder => quote_sub(qq| \$_[0]->raw->{week_totals} |));
 
 1;
 __END__
