@@ -7,7 +7,7 @@ use Moo;
 with 'WebService::Toggl::Role::Report';
 use namespace::clean;
 
-sub api_path { 'summary' }
+sub api_path { 'details' }
 
 # request params
 has page => (is => 'ro', isa => Int, default => 1);
