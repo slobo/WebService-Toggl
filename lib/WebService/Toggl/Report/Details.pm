@@ -1,6 +1,7 @@
 package WebService::Toggl::Report::Details;
 
 use Sub::Quote qw(quote_sub);
+use Types::Standard qw(Int);
 
 use Moo;
 with 'WebService::Toggl::Role::Report';
@@ -9,12 +10,13 @@ use namespace::clean;
 sub api_path { 'summary' }
 
 # request params
-has page => (is => 'ro');
+has page => (is => 'ro', isa => Int, default => 1);
 
 
 # response params
 has $_ => (is => 'ro', lazy => 1, builder => quote_sub(qq| \$_[0]->raw->{$_} |))
     for (qw(per_page total_count));
+
 
 1;
 __END__
