@@ -19,10 +19,10 @@ use WebService::Toggl;
     });
 
     like exception { $toggl->summary({workspace_id => 1, grouping => 'moo'}) },
-        qr{}, 'Failed type for grouping!';
+        qr{did not pass type constraint.+grouping}, 'Failed type for grouping!';
 
     like exception { $toggl->summary({workspace_id => 1, subgrouping => 'moo'}) },
-        qr{}, 'Failed type for subgrouping!';
+        qr{did not pass type constraint.+subgrouping}, 'Failed type for subgrouping!';
 
 
     ok my $report = $toggl->summary({workspace_id => 1});
