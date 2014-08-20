@@ -67,8 +67,7 @@ WebService::Toggl::Report::Weekly - Toggl weekly aggregated report object
 =head1 DESCRIPTION
 
 This module is a wrapper object around the Toggl weekly report
-L<described here|
-https://github.com/toggl/toggl_api_docs/blob/master/reports/weekly.md>.
+L<described here|https://github.com/toggl/toggl_api_docs/blob/master/reports/weekly.md>.
 It returns a report of either time spent or earnings grouped by either
 project or user.
 
@@ -103,11 +102,11 @@ property for each day, with a sum total as the last element.
 =head1 REPORT DATA
 
 The C<data> attribute of a C<::Report::Weekly> object is an arrayref
-of hashrefs representing the L<grouping> property.  It contains a
+of hashrefs representing the L</grouping> property.  It contains a
 C<details> key with an array of hashrefs representing the subgrouping
 parameter.  If the L</calculate> property is C<time>, the C<data>
 attribute will contain a C<totals> key with the daily time aggregates.
-If L</caluclate> is C<earnings> , it will contain a C<currency> key
+If L</calculate> is C<earnings> , it will contain a C<currency> key
 and an C<amounts> key with the daily aggregated earnings.  For more
 details, see the L<Toggl API
 docs|https://github.com/toggl/toggl_api_docs/blob/master/reports/weekly.md>.

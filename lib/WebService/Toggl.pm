@@ -44,7 +44,7 @@ __END__
 
 =head1 NAME
 
-WebService::Toggl - Interface to the toggl.com API
+WebService::Toggl - Wrapper for the toggl.com task logging API
 
 =head1 SYNOPSIS
 

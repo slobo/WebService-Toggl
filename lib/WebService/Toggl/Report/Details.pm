@@ -44,8 +44,7 @@ WebService::Toggl::Report::Details - Toggl detailed report object
 =head1 DESCRIPTION
 
 This module is a wrapper object around the Toggl detailed report
-L<described here|
-https://github.com/toggl/toggl_api_docs/blob/master/reports/detailed.md>.
+L<described here|https://github.com/toggl/toggl_api_docs/blob/master/reports/detailed.md>.
 It returns all of the time entries that match the request criteria.
 
 =head1 REQUEST ATTRIBUTES

@@ -80,8 +80,7 @@ WebService::Toggl::Report::Summary - Toggl summary report object
 =head1 DESCRIPTION
 
 This module is a wrapper object around the Toggl summary report
-L<described here|
-https://github.com/toggl/toggl_api_docs/blob/master/reports/summary.md>.
+L<described here|https://github.com/toggl/toggl_api_docs/blob/master/reports/summary.md>.
 It returns a report of properties that are grouped and subgrouped
 according to the specified request attributes.
 
