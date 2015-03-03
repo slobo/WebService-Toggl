@@ -3,9 +3,10 @@
 use strict;
 use warnings;
 
+use File::Spec ();
 use Test::More;
 
-use lib q{t/lib};
+use lib File::Spec->catdir( qw(t lib) );
 
 use Toggl::MockRequest;
 use WebService::Toggl;
