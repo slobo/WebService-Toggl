@@ -2,6 +2,11 @@ Revision history for Perl extension WebService-Toggl
 
 {{$NEXT}}
 
+0.09 2015-03-09T15:31:08Z
+
+    - minor pod fixes
+    - get tests working on windows
+
 0.08 2014-07-29T19:56:05Z
 
     - add very basic tests for Reports
