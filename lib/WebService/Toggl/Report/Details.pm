@@ -12,6 +12,8 @@ sub api_path { 'details' }
 # request params
 has page => (is => 'ro', isa => Int, default => 1);
 
+# add the page to the request parameters to they make it in the request
+sub _req_params { [qw(workspace_id since until page)] }
 
 # response params
 has $_ => (is => 'ro', lazy => 1, builder => quote_sub(qq| \$_[0]->raw->{$_} |))
