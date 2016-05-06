@@ -2,6 +2,10 @@ Revision history for Perl extension WebService-Toggl
 
 {{$NEXT}}
 
+0.11 2016-05-06T05:12:40Z
+
+    - add page parameters to details report (thanks, @mattgill!)
+
 0.10 2015-03-10T18:04:15Z
 
     - move test packages into their own files to appease Strawberry

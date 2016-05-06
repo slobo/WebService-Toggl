@@ -4,7 +4,7 @@
       "Fitz Elliott <felliott@fiskur.org>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Minilla/v2.3.0, CPAN::Meta::Converter version 2.150001",
+   "generated_by" : "Minilla/v3.0.1, CPAN::Meta::Converter version 2.150001",
    "license" : [
       "perl_5"
    ],
@@ -79,5 +79,8 @@
          "web" : "https://github.com/felliott/WebService-Toggl"
       }
    },
-   "version" : "0.10"
+   "version" : "0.11",
+   "x_contributors" : [
+      "Matt Gill <code@mattgill.net>"
+   ]
 }
