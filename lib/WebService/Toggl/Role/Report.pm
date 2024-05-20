@@ -70,7 +70,7 @@ C<summary>.
 
 =head2 base_url
 
-The base of the URL for the Toggl Reports API.  Defaults to C</reports/api/v8>.
+The base of the URL for the Toggl Reports API.  Defaults to C</reports/api/v9>.
 
 =head2 my_url
 

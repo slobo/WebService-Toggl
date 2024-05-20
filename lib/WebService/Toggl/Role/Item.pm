@@ -27,7 +27,7 @@ sub make_variant {
     install '_build_raw' => sub {
         my ($self) = @_;
         my $response = $self->api_get( $self->my_url, {with_related_data => 1} );
-        return $response->data->{data};
+        return $response->data;
     };
 
     has $_ => (is => 'ro', isa => Bool, lazy => 1, builder => quote_sub(qq| \$_[0]->raw->{$_} |))

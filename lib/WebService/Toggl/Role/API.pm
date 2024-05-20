@@ -37,7 +37,7 @@ C<projects>.
 
 =head2 base_url
 
-The base of the URL for the Toggl API.  Defaults to C</api/v8>.
+The base of the URL for the Toggl API.  Defaults to C</api/v9>.
 
 =head2 my_url
 
